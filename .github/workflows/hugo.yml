@@ -3,7 +3,7 @@ name: Deploy Hugo site to Pages
 # 変更を push したら自動ビルド
 on:
   push:
-    branches: [ master ]        # ← main なら main と書く
+    branches: [master] # ← main なら main と書く
 
 # この 3 行は Pages で必須
 permissions:
@@ -11,7 +11,7 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:             # 同時実行を防ぐおまじない
+concurrency: # 同時実行を防ぐおまじない
   group: "pages"
   cancel-in-progress: false
 
@@ -26,7 +26,7 @@ jobs:
 
       - uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          hugo-version: "latest"
           extended: true
 
       - run: hugo --minify --baseURL="https://kyuko4437.github.io/" --disableLiveReload
@@ -34,7 +34,7 @@ jobs:
       - name: Disable Jekyll
         run: touch public/.nojekyll
 
-      - uses: actions/upload-pages-artifact@v3   # ★ v3 に更新
+      - uses: actions/upload-pages-artifact@v3 # ★ v3 に更新
         with:
           path: ./public
 
@@ -45,4 +45,4 @@ jobs:
       name: github-pages
     steps:
       - id: deploy
-        uses: actions/deploy-pages@v4           # ★ v4 に更新
+        uses: actions/deploy-pages@v4 # ★ v4 に更新

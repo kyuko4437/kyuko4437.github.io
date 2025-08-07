@@ -2,14 +2,15 @@ baseURL            = "https://kyuko4437.github.io/"
 languageCode       = "ja"
 title              = "魔女の脳 公式サイト"
 theme              = "PaperMod"
+canonifyURLs       = true          # すべて絶対パス
+disableLiveReload  = true          # PaperMod 側では無視されるが残してOK
 
-canonifyURLs       = true        # すべて絶対パスで出力
-disableLiveReload  = true        # livereload.js を埋め込まない
+[params]
+  env = "production"               # ★ livereload.js を完全に無効化
 
 [build]
-  disableFingerprinting = ["css", "js"]  # SRI を付けずハッシュも付けない
+  disableFingerprinting = ["css", "js"]  # SRI / ハッシュを付けない
 
-####################  メニュー設定  ####################
 [[menu.main]]
   identifier = "blog"
   name       = "ブログ"
@@ -33,4 +34,3 @@ disableLiveReload  = true        # livereload.js を埋め込まない
   name       = "連絡"
   url        = "/contact/"
   weight     = 4
-########################################################
