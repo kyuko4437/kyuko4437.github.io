@@ -3,6 +3,8 @@ languageCode = "ja"
 title = "魔女の脳 公式サイト"
 theme = "PaperMod"
 
+canonifyURLs = true
+
 [[menu.main]]
   identifier = "blog"
   name       = "ブログ"
