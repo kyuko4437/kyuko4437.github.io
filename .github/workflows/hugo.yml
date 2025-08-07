@@ -19,10 +19,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/c
+      - uses: actions/checkout@v4
         with:
-          submodules: recursive   # ←追加
-          fetch-depth: 0          # ←追加（任意だが推奨）
+          submodules: recursive
+          fetch-depth: 0
 
       - uses: peaceiris/actions-hugo@v3
         with:
