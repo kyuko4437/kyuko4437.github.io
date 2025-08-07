@@ -29,7 +29,7 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - run: hugo --minify -b "https://kyuko4437.github.io/"
+      - run: hugo --minify --baseURL="https://kyuko4437.github.io/" --disableLiveReload
 
       - name: Disable Jekyll
         run: touch public/.nojekyll

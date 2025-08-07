@@ -6,13 +6,6 @@ theme              = "PaperMod"
 canonifyURLs       = true        # すべて絶対パスで出力
 disableLiveReload  = true        # livereload.js を埋め込まない
 
-"development": {
-    "autoBuild": true,
-    "host": "127.0.0.1",
-    "publicOutputDir": "vite-dev",
-    "port": 3036,
-}
-
 [build]
   disableFingerprinting = ["css", "js"]  # SRI を付けずハッシュも付けない
 
