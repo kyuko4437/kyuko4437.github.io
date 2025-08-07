@@ -31,6 +31,9 @@ jobs:
 
       - run: hugo --minify
 
+      - name: Disable Jekyll
+        run: touch public/.nojekyll
+
       - uses: actions/upload-pages-artifact@v3   # ★ v3 に更新
         with:
           path: ./public
