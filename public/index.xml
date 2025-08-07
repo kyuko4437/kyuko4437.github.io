@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>魔女の脳 公式サイト</title>
+    <link>http://localhost:1313/index.html</link>
+    <description>Recent content on 魔女の脳 公式サイト</description>
+    <generator>Hugo -- 0.148.2</generator>
+    <language>ja</language>
+    <lastBuildDate>Thu, 07 Aug 2025 11:27:08 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 08 07 Test</title>
+      <link>http://localhost:1313/blog/2025-08-07-test.html</link>
+      <pubDate>Thu, 07 Aug 2025 11:27:08 +0900</pubDate>
+      <guid>http://localhost:1313/blog/2025-08-07-test.html</guid>
+      <description>&lt;p&gt;これはテスト記事です。サイトが動いているかの確認用。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

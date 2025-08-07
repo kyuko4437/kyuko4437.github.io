@@ -1,5 +1,4 @@
 +++
 date = '2025-08-07T11:24:00+09:00'
-draft = true
 title = 'Games'
 +++
