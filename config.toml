@@ -5,6 +5,7 @@ theme              = "PaperMod"
 
 canonifyURLs       = true          # 参照パスはすべて絶対パスで出力
 disableLiveReload  = true          # livereload.js を埋め込まない
+uglyURLs = true
 
 [build]
   disableFingerprinting = ["css", "js"]  # CSS/JS に SRI・ハッシュを付与しない
