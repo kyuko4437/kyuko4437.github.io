@@ -1,27 +1,42 @@
 name: Deploy Hugo site to Pages
+
+# 変更を push したら自動ビルド
 on:
   push:
-    branches: [ master ]   # ← ブランチ名が master なら master、main なら main
+    branches: [ master ]        # ← main なら main と書く
+
+# この 3 行は Pages で必須
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:             # 同時実行を防ぐおまじない
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: 'latest'
           extended: true
+
       - run: hugo --minify
-      - uses: actions/upload-pages-artifact@v2
+
+      - uses: actions/upload-pages-artifact@v3   # ★ v3 に更新
         with:
           path: ./public
+
   deploy:
     needs: build
-    permissions:
-      pages: write
-      id-token: write
     runs-on: ubuntu-latest
     environment:
       name: github-pages
     steps:
-      - uses: actions/deploy-pages@v3
+      - id: deploy
+        uses: actions/deploy-pages@v4           # ★ v4 に更新
