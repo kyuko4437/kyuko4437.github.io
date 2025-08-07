@@ -5,6 +5,10 @@ theme        = "PaperMod"
 canonifyURLs = true
 disableLiveReload = true
 
+[build]
+  # CSS と JS の fingerprint / SRI を無効化
+  disableFingerprinting = ["css", "js"]
+
 [[menu.main]]
   identifier = "blog"
   name       = "ブログ"
