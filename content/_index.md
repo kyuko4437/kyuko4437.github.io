@@ -19,12 +19,12 @@ date: 2026-10-06
 
 {{< event 番号="2" 分類="セール" 題名="オータムセール2026" 期間="2026年10月2日 – 10月9日" 画像="/img/250823_春風.png" リンク="https://store.steampowered.com/" リンク名="ストアページ" 強調="true" >}}
 [HauntedManager](/#haunted-manager) が○%引きで販売されている。
-{{< /event >}}
-
-{{< event 番号="6" 分類="リリース" 題名="○○のストアページ公開" 期間="2026年10月6日" リンク="https://store.steampowered.com/" >}}
 {{< quote 発言者="ミモザラ" >}}
 これは買うしかありませんね。
 {{< /quote >}}
+{{< /event >}}
+
+{{< event 番号="6" 分類="リリース" 題名="○○のストアページ公開" 期間="2026年10月6日" リンク="https://store.steampowered.com/" >}}
 {{< /event >}}
 
 <!-- メモ: キャラの画像を入れる時は、画像を static/img/ に置いてから下の行を有効にする
