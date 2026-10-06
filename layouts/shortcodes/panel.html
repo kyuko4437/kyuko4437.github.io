@@ -1,0 +1,24 @@
+{{- /*
+  汎用のパネル（枠付きの区画）。
+  本家のメインページも、記事本文と違ってこうした枠で組まれている。
+
+  ■ 記事側での書き方 ----------------------------------------------
+    {{< panel 題名="おしらせ" >}}
+    中身は普通の Markdown が書ける。
+    - 箇条書きも
+    - [リンク](/majobrain/)も
+    {{< /panel >}}
+
+  ・番号="3" を足すと、左端に色付きバッジが出る
+  ・補足="…" を足すと、帯の右端に小さく出る
+*/ -}}
+<section class="panel">
+  {{- if or (.Get "題名") (.Get "番号") (.Get "補足") }}
+  <div class="panel-head">
+    {{- with .Get "番号" }}<span class="panel-badge">{{ . }}</span>{{ end }}
+    {{- with .Get "題名" }}<span class="panel-label">{{ . }}</span>{{ end }}
+    {{- with .Get "補足" }}<span class="panel-note">{{ . }}</span>{{ end }}
+  </div>
+  {{- end }}
+  <div class="panel-body">{{ .Page.RenderString (dict "display" "block") (trim .Inner "\n\r \t") }}</div>
+</section>

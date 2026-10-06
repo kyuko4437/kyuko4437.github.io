@@ -1,0 +1,46 @@
+{{- /*
+  イベント告知のパネル。セール・リリース・フェス参加などに使う。
+  ポータルに限らず、どの記事でも使える。
+
+  ■ 記事側での書き方 ----------------------------------------------
+    {{< event 番号="2" 分類="季節のセール" 題名="オータムセール2026"
+              期間="2026年10月2日 – 10月9日"
+              画像="/img/250823_春風.png"
+              リンク="https://store.steampowered.com/..." リンク名="ストアページ"
+              強調="true" >}}
+    HauntedManager が○%引きで販売されている。
+    {{< /event >}}
+
+  ・すべての項目は省略できる。題名だけでも成立する。
+  ・番号 … 左端の色付きバッジに出る数字（日付の「日」を入れる想定）
+  ・分類 … バッジの右に出る小さな見出し（「季節のセール」など）
+  ・強調="true" … 本体に薄く色を敷く。注目させたい1件だけに使う
+  ・本文（この行のように挟んだ文章）は省略できる。リンクも書ける
+  ・バッジの色は static/css/main.css の --accent で変えられる
+*/ -}}
+<section class="panel event{{ if .Get "強調" }} featured{{ end }}">
+  {{- if or (.Get "番号") (.Get "分類") (.Get "補足") }}
+  <div class="panel-head">
+    {{- with .Get "番号" }}<span class="panel-badge">{{ . }}</span>{{ end }}
+    {{- with .Get "分類" }}<span class="panel-label">{{ . }}</span>{{ end }}
+    {{- with .Get "補足" }}<span class="panel-note">{{ . }}</span>{{ end }}
+  </div>
+  {{- end }}
+  <div class="event-body">
+    {{- with .Get "画像" }}
+    <div class="event-thumb"><img src="{{ . }}" alt="{{ $.Get "題名" }}"></div>
+    {{- end }}
+    <div class="event-main">
+      {{- with .Get "題名" }}<div class="event-title">{{ . }}</div>{{ end }}
+      {{- with .Get "期間" }}<div class="event-date">{{ . }}</div>{{ end }}
+      {{- /* 改行コードが CRLF の場合も空と判定できるよう \r も取り除く */ -}}
+      {{- $inner := trim .Inner "\n\r \t" }}
+      {{- with $inner }}<div class="event-text">{{ $.Page.RenderString (dict "display" "block") . }}</div>{{ end }}
+    </div>
+    {{- with .Get "リンク" }}
+    <div class="event-action">
+      <a class="btn" href="{{ . }}"{{ if hasPrefix . "http" }} rel="noopener"{{ end }}>{{ with $.Get "リンク名" }}{{ . }}{{ else }}詳細を表示{{ end }}</a>
+    </div>
+    {{- end }}
+  </div>
+</section>

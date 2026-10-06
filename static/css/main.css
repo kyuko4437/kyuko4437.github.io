@@ -16,6 +16,10 @@
   --link:        #3366cc;   /* 青リンク（ページが存在する） */
   --link-visit:  #795cb2;   /* 訪問済みリンク */
   --link-new:    #d73333;   /* 赤リンク（ページが未作成） */
+  /* アクセント色。パネルの番号バッジなど、画面で1箇所だけ強い色を置くために使う。
+     サイトの個性を出すならここ。本文の色は触らないほうが読みやすさを保てる */
+  --accent:      #6b4a8a;   /* バッジの背景（紫） */
+  --accent-soft: #f4eff9;   /* 強調パネルの淡い背景 */
 
   --width:       1140px;    /* サイト全体の最大幅 */
   /* 画面上端から表題までの余白。
@@ -34,7 +38,7 @@
 /* ダークモード。OSの設定に自動で従う（切り替えボタンは置かない方針） */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg:         #171810;
+    --bg:         #111018;
     --text:       #e8e9ea;
     --text-weak:  #a2a9b1;
     --border:     #54595d;
@@ -42,6 +46,8 @@
     --link:       #88a3e8;
     --link-visit: #b4a1dd;
     --link-new:   #ff7b72;
+    --accent:      #8b6bb1;
+    --accent-soft: #241f2e;
   }
 }
 
@@ -140,6 +146,61 @@ body {
 /* --- ポータル（トップページ）専用 --- */
 /* 作品ごとに基礎情報ボックスを置くので、次の節が回り込まないようにする */
 .portal h2, .portal h3 { clear: both; }
+
+/* --- パネル（イベント告知などの箱） --- */
+/* 本家のメインページも、記事と違ってこうした枠付きの区画で組まれている */
+.panel { border: 1px solid var(--border); margin: 1.2em 0; }
+.panel-head {
+  display: flex;
+  align-items: stretch;
+  gap: .8em;
+  background: var(--box);
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-weak);
+}
+/* 左端の番号バッジ。画面で唯一の強い色 */
+.panel-badge {
+  display: flex;
+  align-items: center;
+  background: var(--accent);
+  color: #fff;
+  padding: .45em .85em;
+  font-weight: bold;
+}
+.panel-label { display: flex; align-items: center; font-weight: bold; }
+.panel-note { margin-left: auto; display: flex; align-items: center; padding-right: .8em; font-size: 12px; }
+.panel-body { padding: 1em; }
+
+/* --- イベントの中身 --- */
+.event-body { display: flex; gap: 1.2em; align-items: flex-start; padding: 1em; }
+.event.featured .event-body { background: var(--accent-soft); }   /* 強調="true" の時 */
+.event-thumb { flex: 0 0 180px; max-width: 40%; }
+.event-thumb img { display: block; width: 100%; height: auto; border: 1px solid var(--border); }
+.event-main { flex: 1 1 auto; min-width: 0; }
+.event-title { font-family: var(--font-head); font-size: 20px; line-height: 1.3; }
+.event-date { color: var(--text-weak); font-size: 13px; margin-top: .2em; }
+.event-text { margin-top: .6em; font-size: 14px; }
+.event-text p { margin: .4em 0; }
+.event-action { flex: 0 0 auto; }
+
+/* パネル内のボタン風リンク */
+.btn {
+  display: block;
+  border: 1px solid var(--border);
+  background: var(--box);
+  padding: .35em 1.1em;
+  font-size: 13px;
+  white-space: nowrap;
+  text-align: center;
+}
+.btn:hover { text-decoration: none; border-color: var(--accent); }
+
+@media (max-width: 720px) {
+  .event-body { flex-wrap: wrap; gap: .8em; }
+  .event-thumb { flex: 1 1 100%; max-width: 100%; }
+  .event-action { flex: 1 1 100%; }
+}
 
 /* --- ノートの投稿日時 --- */
 .note-meta { font-size: 12px; color: var(--text-weak); margin: -.2em 0 .8em; }

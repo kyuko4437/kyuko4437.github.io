@@ -10,7 +10,7 @@
   ・中身には [表示名](/リンク先/) が書ける。
 */ -}}
 <div class="quotebox">
-  <div class="quotetext">{{ .Page.RenderString (trim .Inner "\n ") }}</div>
+  <div class="quotetext">{{ .Page.RenderString (trim .Inner "\n\r \t") }}</div>
   {{- with .Get "発言者" }}
   <span class="speaker">— {{ . }}</span>
   {{- end }}
