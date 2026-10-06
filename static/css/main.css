@@ -18,6 +18,11 @@
   --link-new:    #d73333;   /* 赤リンク（ページが未作成） */
 
   --width:       1140px;    /* サイト全体の最大幅 */
+  /* 画面上端から表題までの余白。
+     本家は検索欄を含むヘッダー帯がこの位置を占めている。
+     こちらは帯が無いので、同じだけ余白として確保している。
+     詰めたい／空けたい時はこの値だけ変えればよい */
+  --top-space:   7em;
   --font:        "Helvetica Neue", Arial, "Hiragino Sans", "Yu Gothic",
                  "Meiryo", sans-serif;                   /* 本文のフォント */
   /* 見出しのフォント。欧文はセリフ体、和文はゴシック体になるよう並べてある
@@ -61,7 +66,7 @@ body {
   margin: 0 auto;
   gap: 2em;
   /* 上の余白。検索欄が無い分を詰めず、本家と同じくらい間を開ける */
-  padding: 3em 16px 1em;
+  padding: var(--top-space) 16px 1em;
 }
 
 /* --- 左サイドバー --- */
@@ -333,7 +338,7 @@ hr { border: none; border-top: 1px solid var(--border); }
 /* --- スマートフォン --- */
 /* 専用レイアウトは作らず、縦に積んで読めるようにするだけ */
 @media (max-width: 720px) {
-  .site { display: block; padding: 1.5em 12px; }
+  .site { display: block; padding: 2.5em 12px; }
   .sidebar {
     width: auto; flex: none; padding-top: 0;
     border-bottom: 1px solid var(--border);
