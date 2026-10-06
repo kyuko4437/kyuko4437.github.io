@@ -6,18 +6,30 @@
     外部サイトへのリンク        → 青リンク + 矢印アイコン
 
   記事側は普通に [表示名](/tansaki/) と書くだけでよい。
+  [表示名](/#tansaki) のような見出しへのリンクにも対応している。
 */ -}}
 {{- $d := .Destination -}}
 {{- if or (hasPrefix $d "http://") (hasPrefix $d "https://") (hasPrefix $d "//") -}}
   <a href="{{ $d | safeURL }}" class="external" rel="noopener"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
-{{- else if hasPrefix $d "#" -}}
-  {{/* 同じページ内へのジャンプ（脚注など）。判定しない */}}
-  <a href="{{ $d | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
 {{- else -}}
-  {{- $p := site.GetPage $d -}}
-  {{- if $p -}}
-    <a href="{{ $p.RelPermalink }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
+  {{/* 「/tansaki/#開発」のような指定を、ページの部分と見出しの部分に分ける */}}
+  {{- $path := $d -}}
+  {{- $frag := "" -}}
+  {{- if in $d "#" -}}
+    {{- $sp := split $d "#" -}}
+    {{- $path = index $sp 0 -}}
+    {{- $frag = printf "#%s" (delimit (after 1 $sp) "#") -}}
+  {{- end -}}
+
+  {{- if eq $path "" -}}
+    {{/* 同じページ内へのジャンプ（脚注など）。存在判定はしない */}}
+    <a href="{{ $d | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
   {{- else -}}
-    <a href="{{ $d | safeURL }}" class="new" title="{{ with .Title }}{{ . }}{{ else }}{{ .Text }}{{ end }}（存在しないページ）">{{ .Text | safeHTML }}</a>
+    {{- $p := site.GetPage $path -}}
+    {{- if $p -}}
+      <a href="{{ printf "%s%s" $p.RelPermalink $frag | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
+    {{- else -}}
+      <a href="{{ $d | safeURL }}" class="new" title="{{ with .Title }}{{ . }}{{ else }}{{ .Text }}{{ end }}（存在しないページ）">{{ .Text | safeHTML }}</a>
+    {{- end -}}
   {{- end -}}
 {{- end -}}

@@ -87,12 +87,81 @@ body {
 .sidebar li { margin: .25em 0; }
 
 /* --- 本文エリア --- */
+/* .main-col は「カウンター + 本文」をまとめた右側の列 */
+.main-col { flex: 1 1 auto; min-width: 0; }
 .content {
-  flex: 1 1 auto;
-  min-width: 0;                       /* 長い語句ではみ出すのを防ぐ */
   background: var(--paper);
   border: 1px solid var(--border);
   padding: 1em 1.6em 2em;
+}
+
+/* --- 本文の上の帯（左にタブ、右にカウンター） --- */
+.topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+/* --- タブ（ポータル / ノート） --- */
+.tabs { display: flex; list-style: none; margin: 0; padding: 0 0 0 .6em; font-size: 13px; }
+.tabs li {
+  border: 1px solid var(--border);
+  border-bottom: none;
+  background: var(--box);
+  margin-right: 2px;
+}
+.tabs li a { display: block; padding: .25em 1em; color: var(--link); }
+.tabs li.active { background: var(--paper); position: relative; top: 1px; }
+.tabs li.active a { color: var(--text); }
+
+/* --- キリ番カウンター（本来なら検索欄が入る位置） --- */
+.counter {
+  text-align: right;
+  margin: 0 0 .45em;
+  font-size: 12px;
+  color: var(--text-weak);
+  line-height: 1;
+}
+.counter-label { margin-right: .5em; vertical-align: middle; }
+.counter-digits { display: inline-block; vertical-align: middle; }
+.counter-digits b {
+  display: inline-block;
+  width: 1.15em;
+  margin-left: -1px;                  /* 枠線を隣の桁と共有して連結した見た目にする */
+  padding: .25em 0;
+  border: 1px solid var(--border);
+  background: var(--box);
+  color: var(--text);
+  font-family: "Courier New", monospace;
+  font-weight: normal;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* --- ポータル（トップページ）専用 --- */
+/* 作品ごとに基礎情報ボックスを置くので、次の節が回り込まないようにする */
+.portal h2, .portal h3 { clear: both; }
+
+/* --- ノートの投稿日時 --- */
+.note-meta { font-size: 12px; color: var(--text-weak); margin: -.2em 0 .8em; }
+
+/* --- キャラクターの発言枠 --- */
+.quotebox {
+  border: 1px solid var(--border);
+  background: var(--box);
+  padding: .7em 1.1em;
+  margin: 1.2em 0;
+  font-size: 14px;
+}
+.quotebox .quotetext { font-style: italic; }
+.quotebox .quotetext p { margin: 0; }
+.quotebox .speaker {
+  display: block;
+  margin-top: .4em;
+  text-align: right;
+  font-size: 12px;
+  color: var(--text-weak);
 }
 
 /* --- 見出し --- */
@@ -279,6 +348,7 @@ hr { border: none; border-top: 1px solid var(--border); }
   .sidebar h2 { margin-top: .8em; }
   .sidebar ul { display: flex; flex-wrap: wrap; gap: 0 1em; }
   .content { padding: 1em; }
+  .counter { text-align: left; }
   .infobox, .thumb { float: none; width: auto; margin: 1em 0; }
   .pagelist { columns: 1; }
 }

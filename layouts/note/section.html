@@ -1,0 +1,19 @@
+{{- /*
+  ノート（＝ブログ）の一覧。新しい投稿が上に来る。
+*/ -}}
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+
+  {{- $wd := dict "Sun" "日" "Mon" "月" "Tue" "火" "Wed" "水" "Thu" "木" "Fri" "金" "Sat" "土" -}}
+  {{- range .Pages.ByDate.Reverse }}
+  <h2 id="{{ .File.BaseFileName }}"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  <div class="note-meta">
+    {{ .Date.Format "2006年1月2日" }} ({{ index $wd (.Date.Format "Mon") }}) {{ .Date.Format "15:04" }}
+  </div>
+  {{ .Summary }}
+  {{- if .Truncated }}<p><a href="{{ .RelPermalink }}">続きを読む</a></p>{{ end }}
+  {{- else }}
+  <p>まだ投稿がありません。</p>
+  {{- end }}
+{{ end }}

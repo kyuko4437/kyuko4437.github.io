@@ -8,9 +8,16 @@
 <body>
 <div class="site">
   {{ partial "sidebar.html" . }}
-  <main class="content">
-    {{ block "main" . }}{{ end }}
-  </main>
+  <div class="main-col">
+    {{/* 本文の上の帯。左にタブ、右にカウンター */}}
+    <div class="topbar">
+      {{ partial "tabs.html" . }}
+      {{ partial "counter.html" . }}
+    </div>
+    <main class="content">
+      {{ block "main" . }}{{ end }}
+    </main>
+  </div>
 </div>
 {{ partial "footer.html" . }}
 </body>

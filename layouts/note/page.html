@@ -1,0 +1,13 @@
+{{- /*
+  ノートの個別の投稿。URLは /note/ファイル名/ になるのでSNSにも貼れる。
+*/ -}}
+{{ define "main" }}
+  {{- $wd := dict "Sun" "日" "Mon" "月" "Tue" "火" "Wed" "水" "Thu" "木" "Fri" "金" "Sat" "土" -}}
+  <h1>{{ .Title }}</h1>
+  <div class="note-meta">
+    {{ .Date.Format "2006年1月2日" }} ({{ index $wd (.Date.Format "Mon") }}) {{ .Date.Format "15:04" }}
+    ・<a href="/note/">ノート：魔女の脳ホームページ</a>
+  </div>
+  {{ partial "body.html" . }}
+  {{ partial "article-footer.html" . }}
+{{ end }}

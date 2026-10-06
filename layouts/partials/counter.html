@@ -1,0 +1,19 @@
+{{- /*
+  キリ番カウンター。
+  本来なら検索欄が入る位置（本文エリアの右上）に置いている。
+
+  ★ 現在は見た目だけの飾りで、数字は固定値。
+    表示する数字は config.toml の params.counter で変えられる。
+
+    実際に数を数えるには、数を保存しておく場所がサーバー側に必要になる。
+    GitHub Pages は静的ファイルを配るだけなので保存ができない。
+    独自ドメインに移す時に Cloudflare Workers を併用すると、
+    広告なし・無料のまま本物のカウンターにできる。
+*/ -}}
+{{- $n := site.Params.counter | default "0000000" -}}
+<div class="counter" title="このページの閲覧回数">
+  <span class="counter-label">閲覧回数</span>
+  <span class="counter-digits">
+    {{- range (split $n "") }}<b>{{ . }}</b>{{ end -}}
+  </span>
+</div>

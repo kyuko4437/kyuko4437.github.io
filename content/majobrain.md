@@ -24,8 +24,8 @@ date: 2026-10-06
 
 ## 作品
 
-- [タンサキ 片道の宇宙探索](/tansaki/)
-- [まどろみトラベル](/madoromi-travel/)
-- [HauntedManager](/haunted-manager/)
+- [タンサキ 片道の宇宙探索](/#tansaki)
+- [まどろみトラベル](/#madoromi-travel)
+- [HauntedManager](/#haunted-manager)
 
 {{< stub >}}

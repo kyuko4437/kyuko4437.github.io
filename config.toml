@@ -32,6 +32,10 @@ uglyURLs      = false   # /tansaki/ 形式のURLにする（/tansaki.html にし
   # SNSに貼った時の説明文（OGP）
   description = "個人サークル魔女の脳の公式サイト。"
 
+  # キリ番カウンターに表示する数字（現在は飾り。桁数は自由）
+  counter = "0000000"
+
+
 # 日付の扱い。enableGitInfo と組み合わせて、最終更新日時を Git から取る
 [frontmatter]
   lastmod = [":git", "lastmod", "date"]

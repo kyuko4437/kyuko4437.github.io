@@ -25,6 +25,13 @@
       {{- end }}
     </ul>
 
+    <h2>ノート</h2>
+    <ul>
+      {{- range (where site.RegularPages "Section" "note").ByDate.Reverse }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+
     <h2>魔女の脳（サイト運営文書）</h2>
     <ul>
       {{- range $siteDocs.ByTitle }}

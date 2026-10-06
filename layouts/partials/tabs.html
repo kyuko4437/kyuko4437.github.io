@@ -1,0 +1,14 @@
+{{- /*
+  本文エリアの左上に出るタブ。
+  トップページ（ポータル）と、その裏側にあたるノートを行き来する。
+
+  ★ タブを増やしたい時は <li> をコピーする。
+    表示されるのはトップページとノートのページだけ（下の if で判定）。
+*/ -}}
+{{- $isNote := eq .Section "note" -}}
+{{- if or .IsHome $isNote -}}
+<ul class="tabs">
+  <li{{ if .IsHome }} class="active"{{ end }}><a href="/">ポータル</a></li>
+  <li{{ if $isNote }} class="active"{{ end }}><a href="/note/">ノート</a></li>
+</ul>
+{{- end -}}

@@ -1,10 +1,13 @@
 {{- /*
-  トップページ。「魔女の脳ホームページ」という項目そのものとして扱うので、
-  通常の項目ページと同じ見た目にしている。
+  トップページ（ポータル）。
+  作品の紹介をここに集約しているため、本文に .portal を付けて
+  節ごとに基礎情報ボックスが衝突しないようにしている。
 */ -}}
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
   {{- with .Params.subtitle }}<div class="subtitle">{{ . }}</div>{{ end }}
-  {{ partial "body.html" . }}
+  <div class="portal">
+    {{ partial "body.html" . }}
+  </div>
   {{ partial "article-footer.html" . }}
 {{ end }}
