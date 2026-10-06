@@ -22,12 +22,12 @@
      本家は検索欄を含むヘッダー帯がこの位置を占めている。
      こちらは帯が無いので、同じだけ余白として確保している。
      詰めたい／空けたい時はこの値だけ変えればよい */
-  --top-space:   20em;
-  --font:        "Helvetica Neue", Arial, "Hiragino Sans", "Yu Gothic",
+  --top-space:   10em;
+  --font:        "Helvetica Neue", Arial, "Hiragino Sans", "Yu Gothic UI",
                  "Meiryo", sans-serif;                   /* 本文のフォント */
   /* 見出しのフォント。欧文はセリフ体、和文はゴシック体になるよう並べてある
      （和文も明朝にしたい場合は "Yu Mincho" を Georgia の次に足す）*/
-  --font-head:   Georgia, "Times New Roman", "Hiragino Sans", "Yu Gothic",
+  --font-head:   Georgia, "Times New Roman", "Hiragino Sans", "Yu Gothic UI",
                  "Meiryo", sans-serif;
 }
 
