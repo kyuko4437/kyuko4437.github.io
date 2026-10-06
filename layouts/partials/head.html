@@ -26,5 +26,11 @@
   <link rel="icon" href="/favicon.png">
   {{- end }}
 
-  <link rel="stylesheet" href="/css/main.css">
+  {{/* CSS の中身からハッシュを作って URL に付ける。
+       こうしないと、CSS を直してもブラウザが古い版を使い続けることがある */}}
+  {{- $cssPath := "/css/main.css" -}}
+  {{- with os.ReadFile "static/css/main.css" -}}
+    {{- $cssPath = printf "/css/main.css?v=%s" (substr (md5 .) 0 8) -}}
+  {{- end }}
+  <link rel="stylesheet" href="{{ $cssPath }}">
 </head>
