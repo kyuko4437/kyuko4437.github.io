@@ -1,0 +1,23 @@
+{{- /*
+  記事の末尾。カテゴリ欄と最終更新日時を出す。
+  日時は Git のコミット日時から自動取得される（手で書く必要はない）。
+*/ -}}
+{{- with .GetTerms "category" }}
+<div class="catlinks">
+  カテゴリ:
+  <ul>
+    {{- range . }}
+    <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+    {{- end }}
+  </ul>
+</div>
+{{- end }}
+
+{{- $t := .Lastmod -}}
+{{- with .GitInfo }}{{ $t = .AuthorDate }}{{ end -}}
+{{- $wd := dict "Sun" "日" "Mon" "月" "Tue" "火" "Wed" "水" "Thu" "木" "Fri" "金" "Sat" "土" -}}
+{{- if not $t.IsZero }}
+<div class="lastmod">
+  この項目は {{ $t.Format "2006年1月2日" }} ({{ index $wd ($t.Format "Mon") }}) {{ $t.Format "15:04" }} に最終更新されました。
+</div>
+{{- end }}

@@ -1,0 +1,12 @@
+{{- /*
+  フッター。運営文書へのリンクはここに短い名前で並べる
+  （Wikipedia も同じ作りになっている）
+*/ -}}
+<footer class="site-footer">
+  <p>{{ .Site.Params.disclaimer }}</p>
+  <ul>
+    <li>{{ partial "link.html" (dict "to" "/site/about/" "label" "このサイトについて") }}</li>
+    <li>{{ partial "link.html" (dict "to" "/site/privacy/" "label" "プライバシー・ポリシー") }}</li>
+    <li>{{ partial "link.html" (dict "to" "/site/contact/" "label" "お問い合わせ") }}</li>
+  </ul>
+</footer>

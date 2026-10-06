@@ -1,40 +1,37 @@
-baseURL            = "https://kyuko4437.github.io/"
-languageCode       = "ja"
-title              = "魔女の脳 公式サイト"
-theme              = "PaperMod"
+# =====================================================================
+#  魔女の脳ホームページ  サイト設定
+#  ※ ここを書き換えるとサイト全体に影響します
+# =====================================================================
 
-canonifyURLs       = true          # 参照パスはすべて絶対パスで出力
-disableLiveReload  = true          # livereload.js を埋め込まない
-uglyURLs = true
+baseURL = "https://kyuko4437.github.io/"   # 独自ドメインに移す時はここを変える
+locale  = "ja"
+title   = "魔女の脳ホームページ"            # ブラウザのタブに出る名前
 
-[build]
-  disableFingerprinting = ["css", "js"]  # CSS/JS に SRI・ハッシュを付与しない
+enableGitInfo = true    # 「最終更新日時」をGitのコミット日時から自動取得する
+uglyURLs      = false   # /tansaki/ 形式のURLにする（/tansaki.html にしない）
 
+# 分類（カテゴリ）。URLは /category/<英数> になる
+[taxonomies]
+  category = "category"
+
+# 本文内に出す目次の対象となる見出しの深さ
+[markup.tableOfContents]
+  startLevel = 2    # == 見出し == から
+  endLevel   = 4
+
+[markup.goldmark.renderer]
+  unsafe = true     # 本文中にHTMLを直接書けるようにする
+
+# ---------------------------------------------------------------------
+#  サイト独自の設定（layouts から参照される）
+# ---------------------------------------------------------------------
 [params]
-  env = "production"                 # PaperMod に「本番環境」だと明示
+  # フッターに出す一行。ファンサイトではなく公式であることを明示する
+  disclaimer = "本サイトは個人サークル魔女の脳の公式サイトです。"
 
-#################### メニュー設定 ####################
-[[menu.main]]
-  identifier = "blog"
-  name       = "ブログ"
-  url        = "/blog/"
-  weight     = 1
+  # SNSに貼った時の説明文（OGP）
+  description = "個人サークル魔女の脳の公式サイト。"
 
-[[menu.main]]
-  identifier = "games"
-  name       = "ゲーム"
-  url        = "/games/"
-  weight     = 2
-
-[[menu.main]]
-  identifier = "art"
-  name       = "イラスト"
-  url        = "/art/"
-  weight     = 3
-
-[[menu.main]]
-  identifier = "contact"
-  name       = "連絡"
-  url        = "/contact/"
-  weight     = 4
-#####################################################
+# 日付の扱い。enableGitInfo と組み合わせて、最終更新日時を Git から取る
+[frontmatter]
+  lastmod = [":git", "lastmod", "date"]

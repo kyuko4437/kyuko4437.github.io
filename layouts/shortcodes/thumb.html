@@ -1,0 +1,15 @@
+{{- /*
+  本文中の画像（枠付きサムネイル）。
+
+  ■ 記事側での書き方 ----------------------------------------------
+    {{< thumb 画像="/img/250823_春風.png" 説明="2025年に公開されたイラスト。" >}}
+
+  ・左に寄せたい時は  左寄せ="true"  を足す。
+  ・説明文は事務的に書くほど資料らしくなる。
+*/ -}}
+<figure class="thumb{{ if .Get "左寄せ" }} left{{ end }}">
+  <img src="{{ .Get "画像" }}" alt="{{ with .Get "説明" }}{{ . }}{{ else }}{{ .Page.Title }}{{ end }}">
+  {{- with .Get "説明" }}
+  <figcaption>{{ $.Page.RenderString . }}</figcaption>
+  {{- end }}
+</figure>

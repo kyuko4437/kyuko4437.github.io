@@ -1,0 +1,10 @@
+{{- /*
+  トップページ。「魔女の脳ホームページ」という項目そのものとして扱うので、
+  通常の項目ページと同じ見た目にしている。
+*/ -}}
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{- with .Params.subtitle }}<div class="subtitle">{{ . }}</div>{{ end }}
+  {{ partial "body.html" . }}
+  {{ partial "article-footer.html" . }}
+{{ end }}

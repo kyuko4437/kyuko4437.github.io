@@ -1,0 +1,4 @@
+# Hugo のビルド成果物（GitHub Actions が毎回作り直すので記録しない）
+/public/
+/resources/
+.hugo_build.lock

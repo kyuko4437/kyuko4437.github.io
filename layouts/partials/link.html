@@ -1,0 +1,11 @@
+{{- /*
+  サイト内リンクを作る部品。
+  リンク先のページが存在しなければ自動で赤リンクになる。
+  使い方: {{ partial "link.html" (dict "to" "/tansaki/" "label" "タンサキ") }}
+*/ -}}
+{{- $p := site.GetPage .to -}}
+{{- if $p -}}
+<a href="{{ .to }}">{{ .label }}</a>
+{{- else -}}
+<a href="{{ .to }}" class="new" title="{{ .label }}（存在しないページ）">{{ .label }}</a>
+{{- end -}}

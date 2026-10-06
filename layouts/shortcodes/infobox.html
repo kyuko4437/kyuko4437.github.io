@@ -1,0 +1,44 @@
+{{- /*
+  基礎情報ボックス（記事の右上に出る表）。
+
+  ■ 記事側での書き方 ----------------------------------------------
+    {{< infobox 画像="/img/tansaki.png" キャプション="本作のタイトル画面" >}}
+    開発元 = [魔女の脳](/majobrain/)
+    発売日 = 2024年5月3日
+    対応機種 = iOS
+    ジャンル = 探索
+    {{< /infobox >}}
+
+  ・「項目名 = 値」を1行ずつ書くだけ。行の順番がそのまま表示順になる。
+  ・値には [表示名](/リンク先/) が書ける（存在しないページなら赤くなる）。
+  ・「画像」「キャプション」「題名」は省略できる。題名を省くと項目名が入る。
+
+  ■ 見た目を変えたい時 --------------------------------------------
+    枠線・背景色は static/css/main.css の .infobox を参照。
+    行の並び順や項目名は記事側で自由に決められるので、
+    このファイルを触る必要があるのは構造を変える時だけ。
+*/ -}}
+{{- $rows := slice -}}
+{{- range split .Inner "\n" -}}
+  {{- $line := trim . " \t\r" -}}
+  {{- if and (ne $line "") (in $line "=") -}}
+    {{- $kv := split $line "=" -}}
+    {{- $k := trim (index $kv 0) " " -}}
+    {{- $v := trim (delimit (after 1 $kv) "=") " " -}}
+    {{- if ne $k "" -}}
+      {{- $rows = $rows | append (dict "k" $k "v" $v) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<table class="infobox">
+  <caption class="infobox-title">{{ with .Get "題名" }}{{ . }}{{ else }}{{ .Page.Title }}{{ end }}</caption>
+  {{- with .Get "画像" }}
+  <tr><td class="infobox-image" colspan="2">
+    <img src="{{ . }}" alt="{{ $.Page.Title }}">
+    {{- with $.Get "キャプション" }}<div class="caption">{{ . }}</div>{{ end }}
+  </td></tr>
+  {{- end }}
+  {{- range $rows }}
+  <tr><th>{{ .k }}</th><td>{{ $.Page.RenderString .v }}</td></tr>
+  {{- end }}
+</table>

@@ -1,0 +1,24 @@
+{{- /*
+  本文を出力する部品。
+  Wikipedia と同じように、冒頭の文章の「後ろ」かつ最初の見出しの「手前」に
+  目次ボックスを差し込む。見出しが4つ以上ある時だけ目次を出す
+  （これも本家 MediaWiki と同じ挙動）。
+*/ -}}
+{{- $showToc := ge (len .Fragments.Identifiers) 4 -}}
+{{- $parts := split .Content "<h2" -}}
+
+{{- if and $showToc (gt (len $parts) 1) -}}
+  {{/* 冒頭の文章 */}}
+  {{ index $parts 0 | safeHTML }}
+
+  {{/* 目次ボックス */}}
+  <div class="toc">
+    <div class="toctitle">目次</div>
+    {{ .TableOfContents }}
+  </div>
+
+  {{/* 最初の見出し以降 */}}
+  {{ delimit (after 1 $parts) "<h2" | printf "<h2%s" | safeHTML }}
+{{- else -}}
+  {{ .Content }}
+{{- end -}}

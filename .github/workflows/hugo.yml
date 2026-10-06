@@ -26,7 +26,7 @@ jobs:
 
       - uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.167.0'   # ★ latest にすると Hugo の更新で突然ビルドが壊れる
           extended: true
 
       - run: hugo --minify

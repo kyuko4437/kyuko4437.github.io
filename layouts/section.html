@@ -1,0 +1,12 @@
+{{- /* 名前空間ごとの一覧（/site/ や /special/ を直接開いた時） */ -}}
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  <div class="pagelist">
+    <ul>
+      {{- range .Pages.ByTitle }}
+      <li><a href="{{ .RelPermalink }}">{{ partial "fulltitle.html" . }}</a></li>
+      {{- end }}
+    </ul>
+  </div>
+{{ end }}

@@ -1,0 +1,23 @@
+{{- /*
+  本文中のリンクの描画ルール。これがこのサイトの仕掛けの中心。
+
+    リンク先のページが存在する  → 普通の青リンク
+    リンク先のページが存在しない → 赤リンク（class="new"）
+    外部サイトへのリンク        → 青リンク + 矢印アイコン
+
+  記事側は普通に [表示名](/tansaki/) と書くだけでよい。
+*/ -}}
+{{- $d := .Destination -}}
+{{- if or (hasPrefix $d "http://") (hasPrefix $d "https://") (hasPrefix $d "//") -}}
+  <a href="{{ $d | safeURL }}" class="external" rel="noopener"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- else if hasPrefix $d "#" -}}
+  {{/* 同じページ内へのジャンプ（脚注など）。判定しない */}}
+  <a href="{{ $d | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- else -}}
+  {{- $p := site.GetPage $d -}}
+  {{- if $p -}}
+    <a href="{{ $p.RelPermalink }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
+  {{- else -}}
+    <a href="{{ $d | safeURL }}" class="new" title="{{ with .Title }}{{ . }}{{ else }}{{ .Text }}{{ end }}（存在しないページ）">{{ .Text | safeHTML }}</a>
+  {{- end -}}
+{{- end -}}

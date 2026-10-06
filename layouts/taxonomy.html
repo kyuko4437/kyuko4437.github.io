@@ -1,0 +1,11 @@
+{{- /* カテゴリの一覧ページ（/category/） */ -}}
+{{ define "main" }}
+  <h1>カテゴリ一覧</h1>
+  <div class="pagelist">
+    <ul>
+      {{- range .Pages.ByTitle }}
+      <li><a href="{{ .RelPermalink }}">カテゴリ：{{ .Title }}</a>（{{ len .Pages }}）</li>
+      {{- end }}
+    </ul>
+  </div>
+{{ end }}

@@ -1,0 +1,19 @@
+{{- /*
+  特別：最近の更新
+  Git のコミット日時が新しい順に全ページを並べる。自動生成なので手入れは不要。
+*/ -}}
+{{ define "main" }}
+  <h1>{{ partial "fulltitle.html" . }}</h1>
+  {{ .Content }}
+
+  {{- $wd := dict "Sun" "日" "Mon" "月" "Tue" "火" "Wed" "水" "Thu" "木" "Fri" "金" "Sat" "土" -}}
+  <ul>
+    {{- range (where site.RegularPages "Section" "!=" "special").ByLastmod.Reverse }}
+    {{- $t := .Lastmod }}
+    <li>
+      {{ $t.Format "2006年1月2日" }} ({{ index $wd ($t.Format "Mon") }}) {{ $t.Format "15:04" }}
+      ・<a href="{{ .RelPermalink }}">{{ partial "fulltitle.html" . }}</a>
+    </li>
+    {{- end }}
+  </ul>
+{{ end }}

@@ -1,0 +1,284 @@
+/* =====================================================================
+   魔女の脳ホームページ  スタイルシート
+
+   ■ 色やフォントを変えたい時は、すぐ下の「調整用の変数」だけ触れば
+     サイト全体に反映されます。それ以降は構造の指定なので、
+     こだわりが出てきた時に触ってください。
+   ===================================================================== */
+
+/* ------------------ 調整用の変数（ここを書き換える）------------------ */
+:root {
+  --bg:          #f6f6f6;   /* ページ全体の背景 */
+  --paper:       #ffffff;   /* 本文エリアの背景 */
+  --text:        #202122;   /* 本文の文字色 */
+  --text-weak:   #54595d;   /* 補足・キャプションの文字色 */
+  --border:      #a2a9b1;   /* 枠線 */
+  --box:         #f8f9fa;   /* 目次・基礎情報ボックスの背景 */
+  --link:        #3366cc;   /* 青リンク（ページが存在する） */
+  --link-visit:  #795cb2;   /* 訪問済みリンク */
+  --link-new:    #d73333;   /* 赤リンク（ページが未作成） */
+
+  --width:       960px;     /* 本文エリアの最大幅 */
+  --font:        "Helvetica Neue", Arial, "Hiragino Sans", "Yu Gothic UI",
+                 "Meiryo", sans-serif;                   /* 本文のフォント */
+  --font-head:   Georgia, "Times New Roman", "Yu Mincho",
+                 "Hiragino Mincho ProN", serif;          /* 見出しのフォント（明朝）*/
+}
+
+/* ダークモード。OSの設定に自動で従う（切り替えボタンは置かない方針） */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:         #101418;
+    --paper:      #1b1f23;
+    --text:       #e8e9ea;
+    --text-weak:  #a2a9b1;
+    --border:     #54595d;
+    --box:        #27292d;
+    --link:       #88a3e8;
+    --link-visit: #b4a1dd;
+    --link-new:   #ff7b72;
+  }
+}
+
+/* ------------------------ ここから下は構造 -------------------------- */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* 全体を横並びにする（左: サイドバー / 右: 本文） */
+.site {
+  display: flex;
+  align-items: flex-start;
+  max-width: var(--width);
+  margin: 0 auto;
+  gap: 1em;
+  padding: 1em 16px;
+}
+
+/* --- 左サイドバー --- */
+.sidebar { width: 11em; flex: 0 0 11em; font-size: 13px; padding-top: 1em; }
+.sidebar .logo { display: block; margin-bottom: 1.5em; text-align: center; }
+.sidebar .logo img { max-width: 100%; }
+.sidebar .logo .sitename {
+  font-family: var(--font-head);
+  font-size: 17px;
+  color: var(--text);
+  text-decoration: none;
+  line-height: 1.3;
+  display: inline-block;
+}
+.sidebar h2 {
+  font-size: 12px;
+  font-weight: normal;
+  color: var(--text-weak);
+  border: none;
+  margin: 1.4em 0 .3em;
+  padding: 0;
+}
+.sidebar ul { list-style: none; margin: 0; padding: 0; }
+.sidebar li { margin: .25em 0; }
+
+/* --- 本文エリア --- */
+.content {
+  flex: 1 1 auto;
+  min-width: 0;                       /* 長い語句ではみ出すのを防ぐ */
+  background: var(--paper);
+  border: 1px solid var(--border);
+  padding: 1em 1.6em 2em;
+}
+
+/* --- 見出し --- */
+h1, h2 {
+  font-family: var(--font-head);
+  font-weight: normal;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: .15em;
+  margin: 1.2em 0 .5em;
+  line-height: 1.3;
+}
+h1 { font-size: 28px; margin-top: 0; }
+h2 { font-size: 22px; }
+h3, h4 { font-size: 16px; margin: 1.2em 0 .3em; }
+
+/* 項目名の下に出る補足 */
+.subtitle { color: var(--text-weak); font-size: 13px; margin: -.3em 0 1em; }
+
+/* --- リンク --- */
+a         { color: var(--link); text-decoration: none; }
+a:visited { color: var(--link-visit); }
+a:hover   { text-decoration: underline; }
+a.new, a.new:visited { color: var(--link-new); }   /* 未作成ページへの赤リンク */
+a.external::after { content: "\2197"; font-size: .85em; margin-left: .1em; opacity: .7; }
+
+/* --- 目次ボックス（本文内。見出しが4つ以上の時だけ出る） --- */
+.toc {
+  display: inline-block;
+  min-width: 15em;
+  background: var(--box);
+  border: 1px solid var(--border);
+  padding: .5em 1.2em .7em .7em;
+  margin: 1em 0;
+  font-size: 14px;
+}
+.toc .toctitle { text-align: center; font-weight: bold; margin-bottom: .3em; }
+.toc ul { list-style: none; margin: 0; padding-left: 1.4em; }
+.toc > nav > ul { padding-left: 0; }
+.toc li { margin: .1em 0; }
+/* 「1 概要」「2.1 燃料」のような番号を自動で振る */
+.toc nav { counter-reset: toc1; }
+.toc > nav > ul > li { counter-increment: toc1; counter-reset: toc2; }
+.toc > nav > ul > li > a::before { content: counter(toc1) " "; }
+.toc > nav > ul > li > ul > li { counter-increment: toc2; }
+.toc > nav > ul > li > ul > li > a::before { content: counter(toc1) "." counter(toc2) " "; }
+
+/* --- 基礎情報ボックス（infobox） --- */
+.infobox {
+  float: right;
+  clear: right;
+  width: 22em;
+  max-width: 100%;
+  background: var(--box);
+  border: 1px solid var(--border);
+  margin: 0 0 1em 1.4em;
+  padding: .4em;
+  font-size: 13px;
+  line-height: 1.5;
+  border-collapse: collapse;
+}
+.infobox .infobox-title {
+  text-align: center;
+  font-family: var(--font-head);
+  font-size: 16px;
+  padding: .4em;
+  border-bottom: 1px solid var(--border);
+}
+.infobox .infobox-image { text-align: center; padding: .6em .3em; }
+.infobox .infobox-image img { max-width: 100%; height: auto; }
+.infobox .infobox-image .caption { color: var(--text-weak); font-size: 12px; }
+.infobox th, .infobox td {
+  text-align: left;
+  vertical-align: top;
+  padding: .3em .5em;
+  border-top: 1px solid var(--border);
+}
+.infobox th { width: 7.5em; font-weight: bold; white-space: nowrap; }
+
+/* --- 画像（サムネイル枠） --- */
+.thumb {
+  float: right;
+  clear: right;
+  border: 1px solid var(--border);
+  background: var(--box);
+  padding: 3px;
+  margin: .5em 0 1em 1.4em;
+  font-size: 13px;
+  max-width: 100%;
+}
+.thumb.left { float: left; margin: .5em 1.4em 1em 0; }
+.thumb img { display: block; max-width: 100%; height: auto; }
+.thumb figcaption { padding: .4em .3em .2em; color: var(--text-weak); line-height: 1.5; }
+
+/* --- スタブ表記（書きかけの項目） --- */
+.stub {
+  clear: both;
+  border-top: 1px solid var(--border);
+  margin-top: 2.5em;
+  padding-top: .8em;
+  font-style: italic;
+  color: var(--text-weak);
+  font-size: 13px;
+}
+
+/* --- hatnote（「この項目では〜について説明しています」） --- */
+.hatnote {
+  font-style: italic;
+  color: var(--text-weak);
+  padding-left: 1.6em;
+  margin: .3em 0 1em;
+  font-size: 14px;
+}
+
+/* --- 脚注・出典 --- */
+.footnotes { font-size: 13px; }
+.footnotes hr { display: none; }
+sup[id^="fnref"] a { font-size: 11px; }
+
+/* --- カテゴリ欄（記事の最下部） --- */
+.catlinks {
+  clear: both;
+  border: 1px solid var(--border);
+  background: var(--box);
+  padding: .4em .8em;
+  margin-top: 2em;
+  font-size: 13px;
+}
+.catlinks ul { display: inline; list-style: none; margin: 0; padding: 0; }
+.catlinks li { display: inline; border-left: 1px solid var(--border); padding: 0 .5em; }
+.catlinks li:first-child { border-left: none; }
+
+/* --- 一覧ページ --- */
+.pagelist { columns: 2; margin: 1em 0; }
+.pagelist ul { margin: 0 0 1.2em; padding-left: 1.4em; }
+.pagelist h2 { column-span: all; }
+
+/* --- 記事下部の最終更新表示とフッター --- */
+.lastmod {
+  clear: both;
+  border-top: 1px solid var(--border);
+  margin-top: 1.5em;
+  padding-top: .6em;
+  font-size: 12px;
+  color: var(--text-weak);
+}
+.site-footer {
+  max-width: var(--width);
+  margin: 0 auto;
+  padding: 0 16px 3em;
+  font-size: 12px;
+  color: var(--text-weak);
+  text-align: center;
+}
+.site-footer ul { list-style: none; margin: .4em 0 0; padding: 0; }
+.site-footer li { display: inline; padding: 0 .4em; border-left: 1px solid var(--border); }
+.site-footer li:first-child { border-left: none; }
+
+/* --- 本文の細部 --- */
+.content table { border-collapse: collapse; }
+.content blockquote {
+  border-left: 3px solid var(--border);
+  margin-left: 0;
+  padding-left: 1em;
+  color: var(--text-weak);
+}
+.content code {
+  background: var(--box);
+  border: 1px solid var(--border);
+  padding: 0 .3em;
+  font-size: 90%;
+}
+hr { border: none; border-top: 1px solid var(--border); }
+
+/* --- スマートフォン --- */
+/* 専用レイアウトは作らず、縦に積んで読めるようにするだけ */
+@media (max-width: 720px) {
+  .site { display: block; padding: .5em 12px; }
+  .sidebar {
+    width: auto; flex: none; padding-top: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1em; padding-bottom: .5em;
+  }
+  .sidebar .logo { margin-bottom: .6em; }
+  .sidebar h2 { margin-top: .8em; }
+  .sidebar ul { display: flex; flex-wrap: wrap; gap: 0 1em; }
+  .content { padding: 1em; }
+  .infobox, .thumb { float: none; width: auto; margin: 1em 0; }
+  .pagelist { columns: 1; }
+}

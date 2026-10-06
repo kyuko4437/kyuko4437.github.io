@@ -1,0 +1,13 @@
+{{- /* カテゴリのページ（例: カテゴリ：ゲーム） */ -}}
+{{ define "main" }}
+  <h1>{{ partial "fulltitle.html" . }}</h1>
+  {{ .Content }}
+  <p>このカテゴリには以下の{{ len .Pages }}ページが含まれています。</p>
+  <div class="pagelist">
+    <ul>
+      {{- range .Pages.ByTitle }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+  </div>
+{{ end }}

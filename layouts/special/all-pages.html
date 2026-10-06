@@ -1,0 +1,42 @@
+{{- /*
+  特別：すべてのページ
+  名前空間ごとに分けて全ページを並べる。自動生成なので手入れは不要。
+*/ -}}
+{{ define "main" }}
+  <h1>{{ partial "fulltitle.html" . }}</h1>
+  {{ .Content }}
+
+  {{- $articles := where site.RegularPages "Section" "" -}}
+  {{- $siteDocs := where site.RegularPages "Section" "site" -}}
+  {{- $specials := where site.RegularPages "Section" "special" -}}
+
+  <div class="pagelist">
+    <h2>項目</h2>
+    <ul>
+      {{- range $articles.ByTitle }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+
+    <h2>カテゴリ</h2>
+    <ul>
+      {{- range site.Taxonomies.category.ByCount }}
+      <li><a href="{{ .Page.RelPermalink }}">カテゴリ：{{ .Page.Title }}</a>（{{ .Count }}）</li>
+      {{- end }}
+    </ul>
+
+    <h2>魔女の脳（サイト運営文書）</h2>
+    <ul>
+      {{- range $siteDocs.ByTitle }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+
+    <h2>特別ページ</h2>
+    <ul>
+      {{- range $specials.ByTitle }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+  </div>
+{{ end }}
