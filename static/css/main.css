@@ -29,7 +29,7 @@
 /* ダークモード。OSの設定に自動で従う（切り替えボタンは置かない方針） */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg:         #101418;
+    --bg:         #171810;
     --text:       #e8e9ea;
     --text-weak:  #a2a9b1;
     --border:     #54595d;
