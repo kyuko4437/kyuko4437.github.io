@@ -154,18 +154,22 @@ body {
   display: flex;
   align-items: stretch;
   gap: .8em;
+  min-height: 2.3em;              /* バッジを正方形にするため高さを固定する */
   background: var(--box);
   border-bottom: 1px solid var(--border);
   font-size: 13px;
   color: var(--text-weak);
 }
-/* 左端の番号バッジ。画面で唯一の強い色 */
+/* 左端の番号バッジ。画面で唯一の強い色。幅＝帯の高さで正方形になる */
 .panel-badge {
+  flex: 0 0 2.3em;
+  width: 2.3em;
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 0;
   background: var(--accent);
   color: #fff;
-  padding: .45em .85em;
   font-weight: bold;
 }
 .panel-label { display: flex; align-items: center; font-weight: bold; }
