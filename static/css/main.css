@@ -8,8 +8,7 @@
 
 /* ------------------ 調整用の変数（ここを書き換える）------------------ */
 :root {
-  --bg:          #f6f6f6;   /* ページ全体の背景 */
-  --paper:       #ffffff;   /* 本文エリアの背景 */
+  --bg:          #ffffff;   /* ページの背景 */
   --text:        #202122;   /* 本文の文字色 */
   --text-weak:   #54595d;   /* 補足・キャプションの文字色 */
   --border:      #a2a9b1;   /* 枠線 */
@@ -29,7 +28,6 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg:         #101418;
-    --paper:      #1b1f23;
     --text:       #e8e9ea;
     --text-weak:  #a2a9b1;
     --border:     #54595d;
@@ -87,13 +85,10 @@ body {
 .sidebar li { margin: .25em 0; }
 
 /* --- 本文エリア --- */
-/* .main-col は「カウンター + 本文」をまとめた右側の列 */
+/* .main-col は「タブ・カウンターの帯 + 本文」をまとめた右側の列 */
+/* 本文を囲む枠は置かない（本家と同じく、背景にそのまま文章が乗る） */
 .main-col { flex: 1 1 auto; min-width: 0; }
-.content {
-  background: var(--paper);
-  border: 1px solid var(--border);
-  padding: 1em 1.6em 2em;
-}
+.content { padding: 1em 0 3em; }
 
 /* --- 本文の上の帯（左にタブ、右にカウンター） --- */
 .topbar {
@@ -101,24 +96,19 @@ body {
   align-items: flex-end;
   justify-content: space-between;
   gap: 1em;
+  border-bottom: 1px solid var(--border);
 }
 
-/* --- タブ（ポータル / ノート） --- */
-.tabs { display: flex; list-style: none; margin: 0; padding: 0 0 0 .6em; font-size: 13px; }
-.tabs li {
-  border: 1px solid var(--border);
-  border-bottom: none;
-  background: var(--box);
-  margin-right: 2px;
-}
-.tabs li a { display: block; padding: .25em 1em; color: var(--link); }
-.tabs li.active { background: var(--paper); position: relative; top: 1px; }
+/* --- タブ（ページ / ノート） --- */
+.tabs { display: flex; list-style: none; margin: 0; padding: 0; font-size: 14px; }
+.tabs li a { display: block; padding: .3em .9em; color: var(--link); }
+.tabs li.active { border-bottom: 2px solid var(--text); }
 .tabs li.active a { color: var(--text); }
 
 /* --- キリ番カウンター（本来なら検索欄が入る位置） --- */
 .counter {
   text-align: right;
-  margin: 0 0 .45em;
+  margin: 0 0 .35em;
   font-size: 12px;
   color: var(--text-weak);
   line-height: 1;
@@ -347,7 +337,7 @@ hr { border: none; border-top: 1px solid var(--border); }
   .sidebar .logo { margin-bottom: .6em; }
   .sidebar h2 { margin-top: .8em; }
   .sidebar ul { display: flex; flex-wrap: wrap; gap: 0 1em; }
-  .content { padding: 1em; }
+  .content { padding: 1em 0 2em; }
   .counter { text-align: left; }
   .infobox, .thumb { float: none; width: auto; margin: 1em 0; }
   .pagelist { columns: 1; }
