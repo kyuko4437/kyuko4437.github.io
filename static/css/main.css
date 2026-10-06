@@ -22,7 +22,7 @@
      本家は検索欄を含むヘッダー帯がこの位置を占めている。
      こちらは帯が無いので、同じだけ余白として確保している。
      詰めたい／空けたい時はこの値だけ変えればよい */
-  --top-space:   7em;
+  --top-space:   20em;
   --font:        "Helvetica Neue", Arial, "Hiragino Sans", "Yu Gothic",
                  "Meiryo", sans-serif;                   /* 本文のフォント */
   /* 見出しのフォント。欧文はセリフ体、和文はゴシック体になるよう並べてある
