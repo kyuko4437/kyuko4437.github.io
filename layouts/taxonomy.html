@@ -1,6 +1,6 @@
 {{- /* カテゴリの一覧ページ（/category/） */ -}}
+{{ define "pagetitle" }}カテゴリ一覧{{ end }}
 {{ define "main" }}
-  <h1>カテゴリ一覧</h1>
   <div class="pagelist">
     <ul>
       {{- range .Pages.ByTitle }}

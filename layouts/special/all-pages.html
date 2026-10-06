@@ -3,7 +3,6 @@
   名前空間ごとに分けて全ページを並べる。自動生成なので手入れは不要。
 */ -}}
 {{ define "main" }}
-  <h1>{{ partial "fulltitle.html" . }}</h1>
   {{ .Content }}
 
   {{- $articles := where site.RegularPages "Section" "" -}}

@@ -3,7 +3,6 @@
   Git のコミット日時が新しい順に全ページを並べる。自動生成なので手入れは不要。
 */ -}}
 {{ define "main" }}
-  <h1>{{ partial "fulltitle.html" . }}</h1>
   {{ .Content }}
 
   {{- $wd := dict "Sun" "日" "Mon" "月" "Tue" "火" "Wed" "水" "Thu" "木" "Fri" "金" "Sat" "土" -}}

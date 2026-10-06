@@ -1,6 +1,6 @@
 {{- /* 赤リンクを踏んだ時や、存在しないURLを開いた時に出るページ */ -}}
+{{ define "pagetitle" }}この項目は存在しません{{ end }}
 {{ define "main" }}
-  <h1>この項目は存在しません</h1>
   <p>お探しの項目はまだ作成されていません。</p>
   <p>{{ partial "link.html" (dict "to" "/special/all-pages/" "label" "すべてのページ") }} から既存の項目を探すか、{{ partial "link.html" (dict "to" "/" "label" "メインページ") }}へ戻ってください。</p>
 {{ end }}

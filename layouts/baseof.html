@@ -1,6 +1,9 @@
 {{- /*
   全ページ共通の骨組み。
-  個別の中身は {{ block "main" }} の部分に差し込まれる。
+
+  並び順は本家に合わせて  表題 → タブの帯 → 本文  としている。
+  表題は fulltitle.html が組み立てる（名前空間の接頭辞が自動で付く）。
+  個別のレイアウトで表題を差し替えたい時は {{ define "pagetitle" }} を使う。
 */ -}}
 <!DOCTYPE html>
 <html lang="ja">
@@ -9,11 +12,15 @@
 <div class="site">
   {{ partial "sidebar.html" . }}
   <div class="main-col">
-    {{/* 本文の上の帯。左にタブ、右にカウンター */}}
+    <h1>{{ block "pagetitle" . }}{{ partial "fulltitle.html" . }}{{ end }}</h1>
+    {{- with .Params.subtitle }}<div class="subtitle">{{ . }}</div>{{ end }}
+
+    {{/* 表題の下の帯。左にタブ、右にカウンター */}}
     <div class="topbar">
       {{ partial "tabs.html" . }}
       {{ partial "counter.html" . }}
     </div>
+
     <main class="content">
       {{ block "main" . }}{{ end }}
     </main>

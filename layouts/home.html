@@ -4,8 +4,6 @@
   節ごとに基礎情報ボックスが衝突しないようにしている。
 */ -}}
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{- with .Params.subtitle }}<div class="subtitle">{{ . }}</div>{{ end }}
   <div class="portal">
     {{ partial "body.html" . }}
   </div>

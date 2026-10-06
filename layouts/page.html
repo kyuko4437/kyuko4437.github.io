@@ -1,7 +1,5 @@
 {{- /* 通常の項目ページ */ -}}
 {{ define "main" }}
-  <h1>{{ partial "fulltitle.html" . }}</h1>
-  {{- with .Params.subtitle }}<div class="subtitle">{{ . }}</div>{{ end }}
   {{ partial "body.html" . }}
   {{ partial "article-footer.html" . }}
 {{ end }}
