@@ -1,9 +1,20 @@
 {{- /*
-  フッター。運営文書へのリンクはここに短い名前で並べる
-  （Wikipedia も同じ作りになっている）
+  フッター。
+  ★ サイト内のナビゲーションはここに置いている。
+    項目を増やしたい時は <li> の行をコピーする。
+    リンク先が存在しなければ自動で赤くなる。
 */ -}}
 <footer class="site-footer">
+  <ul class="footer-nav">
+    <li>{{ partial "link.html" (dict "to" "/" "label" "メインページ") }}</li>
+    <li>{{ partial "link.html" (dict "to" "/note/" "label" "ノート") }}</li>
+    <li>{{ partial "link.html" (dict "to" "/special/recent-changes/" "label" "最近の更新") }}</li>
+    <li>{{ partial "link.html" (dict "to" "/special/all-pages/" "label" "すべてのページ") }}</li>
+    <li>{{ partial "link.html" (dict "to" "/majobrain/" "label" "魔女の脳") }}</li>
+  </ul>
+
   <p>{{ .Site.Params.disclaimer }}</p>
+
   <ul>
     <li>{{ partial "link.html" (dict "to" "/site/about/" "label" "このサイトについて") }}</li>
     <li>{{ partial "link.html" (dict "to" "/site/privacy/" "label" "プライバシー・ポリシー") }}</li>

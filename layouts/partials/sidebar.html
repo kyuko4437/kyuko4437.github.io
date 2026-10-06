@@ -1,8 +1,12 @@
 {{- /*
-  左サイドバー。
-  ★ メニューに項目を足したい時は、下の <li> の行をコピーして増やすだけ。
-    （リンク先のページが無い場合は自動で赤文字になる）
+  左サイドバー。本家に合わせて「目次」を置いている。
+  ナビゲーションのリンクはフッターに移した（layouts/partials/footer.html）。
+
+  目次はそのページの見出しから自動で作られる。
+  特定のページで目次を出したくない時は、その記事の front matter に
+  toc: false と書く。
 */ -}}
+{{- $showToc := and (ne .Params.toc false) (ge (len .Fragments.Identifiers) 1) -}}
 <nav class="sidebar">
   <a class="logo" href="/">
     {{- if fileExists "static/logo.png" -}}
@@ -12,22 +16,11 @@
     {{- end -}}
   </a>
 
-  <h2>ナビゲーション</h2>
-  <ul>
-    <li>{{ partial "link.html" (dict "to" "/" "label" "メインページ") }}</li>
-    <li>{{ partial "link.html" (dict "to" "/special/recent-changes/" "label" "最近の更新") }}</li>
-    <li>{{ partial "link.html" (dict "to" "/special/all-pages/" "label" "すべてのページ") }}</li>
-  </ul>
-
-  <h2>カテゴリ</h2>
-  <ul>
-    <li>{{ partial "link.html" (dict "to" "/category/game/" "label" "ゲーム") }}</li>
-  </ul>
-
-  <h2>このサイトについて</h2>
-  <ul>
-    <li>{{ partial "link.html" (dict "to" "/majobrain/" "label" "魔女の脳") }}</li>
-    <li>{{ partial "link.html" (dict "to" "/site/about/" "label" "このサイトについて") }}</li>
-    <li>{{ partial "link.html" (dict "to" "/site/contact/" "label" "お問い合わせ") }}</li>
-  </ul>
+  {{- if $showToc }}
+  <h2>目次</h2>
+  <div class="sidebar-toc">
+    <ul><li><a href="#">ページ先頭</a></li></ul>
+    {{ .TableOfContents }}
+  </div>
+  {{- end }}
 </nav>

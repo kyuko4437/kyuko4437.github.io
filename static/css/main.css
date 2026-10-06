@@ -17,11 +17,13 @@
   --link-visit:  #795cb2;   /* 訪問済みリンク */
   --link-new:    #d73333;   /* 赤リンク（ページが未作成） */
 
-  --width:       960px;     /* 本文エリアの最大幅 */
+  --width:       1140px;    /* サイト全体の最大幅 */
   --font:        "Helvetica Neue", Arial, "Hiragino Sans", "Yu Gothic UI",
                  "Meiryo", sans-serif;                   /* 本文のフォント */
-  --font-head:   Georgia, "Times New Roman", "Yu Mincho",
-                 "Hiragino Mincho ProN", serif;          /* 見出しのフォント（明朝）*/
+  /* 見出しのフォント。欧文はセリフ体、和文はゴシック体になるよう並べてある
+     （和文も明朝にしたい場合は "Yu Mincho" を Georgia の次に足す）*/
+  --font-head:   Georgia, "Times New Roman", "Hiragino Sans", "Yu Gothic UI",
+                 "Meiryo", sans-serif;
 }
 
 /* ダークモード。OSの設定に自動で従う（切り替えボタンは置かない方針） */
@@ -62,7 +64,7 @@ body {
 }
 
 /* --- 左サイドバー --- */
-.sidebar { width: 11em; flex: 0 0 11em; font-size: 13px; padding-top: 1em; }
+.sidebar { width: 14em; flex: 0 0 14em; font-size: 13px; padding-top: 1em; }
 .sidebar .logo { display: block; margin-bottom: 1.5em; text-align: center; }
 .sidebar .logo img { max-width: 100%; }
 .sidebar .logo .sitename {
@@ -177,26 +179,18 @@ a:hover   { text-decoration: underline; }
 a.new, a.new:visited { color: var(--link-new); }   /* 未作成ページへの赤リンク */
 a.external::after { content: "\2197"; font-size: .85em; margin-left: .1em; opacity: .7; }
 
-/* --- 目次ボックス（本文内。見出しが4つ以上の時だけ出る） --- */
-.toc {
-  display: inline-block;
-  min-width: 15em;
-  background: var(--box);
-  border: 1px solid var(--border);
-  padding: .5em 1.2em .7em .7em;
-  margin: 1em 0;
-  font-size: 14px;
-}
-.toc .toctitle { text-align: center; font-weight: bold; margin-bottom: .3em; }
-.toc ul { list-style: none; margin: 0; padding-left: 1.4em; }
-.toc > nav > ul { padding-left: 0; }
-.toc li { margin: .1em 0; }
+/* --- サイドバーの目次 --- */
+.sidebar-toc { line-height: 1.5; }
+.sidebar-toc ul { list-style: none; margin: 0; padding-left: 1em; }
+.sidebar-toc > nav > ul { padding-left: 0; }
+.sidebar-toc li { margin: .4em 0; }
+.sidebar-toc a { display: block; }
 /* 「1 概要」「2.1 燃料」のような番号を自動で振る */
-.toc nav { counter-reset: toc1; }
-.toc > nav > ul > li { counter-increment: toc1; counter-reset: toc2; }
-.toc > nav > ul > li > a::before { content: counter(toc1) " "; }
-.toc > nav > ul > li > ul > li { counter-increment: toc2; }
-.toc > nav > ul > li > ul > li > a::before { content: counter(toc1) "." counter(toc2) " "; }
+.sidebar-toc nav { counter-reset: toc1; }
+.sidebar-toc > nav > ul > li { counter-increment: toc1; counter-reset: toc2; }
+.sidebar-toc > nav > ul > li > a::before { content: counter(toc1) " "; }
+.sidebar-toc > nav > ul > li > ul > li { counter-increment: toc2; }
+.sidebar-toc > nav > ul > li > ul > li > a::before { content: counter(toc1) "." counter(toc2) " "; }
 
 /* --- 基礎情報ボックス（infobox） --- */
 .infobox {
@@ -308,6 +302,13 @@ sup[id^="fnref"] a { font-size: 11px; }
 .site-footer ul { list-style: none; margin: .4em 0 0; padding: 0; }
 .site-footer li { display: inline; padding: 0 .4em; border-left: 1px solid var(--border); }
 .site-footer li:first-child { border-left: none; }
+/* ナビゲーション（フッター上段）は少し大きく */
+.site-footer .footer-nav {
+  font-size: 13px;
+  margin: 0 0 1.4em;
+  padding-bottom: 1.2em;
+  border-bottom: 1px solid var(--border);
+}
 
 /* --- 本文の細部 --- */
 .content table { border-collapse: collapse; }
