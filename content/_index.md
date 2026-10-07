@@ -15,7 +15,7 @@ date: 2026-10-06
 
 ## 最近の出来事 — News
 
-魔女の脳に関する極めて有益な情報は以下である。
+魔女の脳に関する極めて有益なトピックは以下である。
 
 <!-- 画像はすべて仮。static/img/ に置いたものを 画像="/img/ファイル名" で指定する -->
 
@@ -39,7 +39,7 @@ date: 2026-10-06
 
 ### タンサキ 片道の宇宙探索 {#tansaki}
 
-{{< infobox 題名="タンサキ 片道の宇宙探索" >}}
+{{< infobox 題名="タンサキ 片道の宇宙探索" 画像="/img/tansaki.jpg" キャプション="本作のキービジュアル" >}}
 ジャンル = 2D探索アドベンチャー
 開発元 = [魔女の脳](/majobrain/)
 発売日 = 2021年10月26日
@@ -73,7 +73,7 @@ date: 2026-10-06
 
 ### まどろみトラベル {#madoromi-travel}
 
-{{< infobox 題名="まどろみトラベル" >}}
+{{< infobox 題名="まどろみトラベル" 画像="/img/madoromi-travel.jpg" キャプション="本作のキービジュアル" >}}
 ジャンル = 要記入
 開発元 = [魔女の脳](/majobrain/)
 発売日 = 要記入
@@ -87,7 +87,7 @@ date: 2026-10-06
 
 ### HauntedManager {#haunted-manager}
 
-{{< infobox 題名="HauntedManager" >}}
+{{< infobox 題名="HauntedManager" 画像="/img/haunted-manager.jpg" キャプション="本作のキービジュアル" >}}
 ジャンル = 要記入
 開発元 = [魔女の脳](/majobrain/)
 発売日 = 要記入

@@ -34,7 +34,7 @@
   <caption class="infobox-title">{{ with .Get "題名" }}{{ . }}{{ else }}{{ .Page.Title }}{{ end }}</caption>
   {{- with .Get "画像" }}
   <tr><td class="infobox-image" colspan="2">
-    <img src="{{ . }}" alt="{{ $.Page.Title }}">
+    <img src="{{ . }}" alt="{{ with $.Get "題名" }}{{ . }}{{ else }}{{ $.Page.Title }}{{ end }}">
     {{- with $.Get "キャプション" }}<div class="caption">{{ . }}</div>{{ end }}
   </td></tr>
   {{- end }}
