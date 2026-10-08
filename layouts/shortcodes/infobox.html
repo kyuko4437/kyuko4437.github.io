@@ -2,7 +2,7 @@
   基礎情報ボックス（記事の右上に出る表）。
 
   ■ 記事側での書き方 ----------------------------------------------
-    {{< infobox 画像="/img/tansaki.png" キャプション="本作のタイトル画面" >}}
+    {{< infobox 画像="/img/tansaki.jpg" キャプション="本作のキービジュアル" >}}
     開発元 = [魔女の脳](/majobrain/)
     発売日 = 2024年5月3日
     対応機種 = iOS
@@ -13,20 +13,35 @@
   ・値には [表示名](/リンク先/) が書ける（存在しないページなら赤くなる）。
   ・「画像」「キャプション」「題名」は省略できる。題名を省くと項目名が入る。
 
+  ■ 値を複数行にしたい時 ------------------------------------------
+    = を書かずに続けると、前の行の続きとして下に積まれる。
+
+    発売日 = [PC]2025年8月6日
+             [Switch]2026年2月26日
+
+    ※続きの行に = を含めると、新しい項目として扱われてしまう。
+      その時だけ <br> で繋ぐこと。
+
   ■ 見た目を変えたい時 --------------------------------------------
-    枠線・背景色は static/css/main.css の .infobox を参照。
-    行の並び順や項目名は記事側で自由に決められるので、
-    このファイルを触る必要があるのは構造を変える時だけ。
+    枠線・背景色・右の余白は static/css/main.css の .infobox を参照。
 */ -}}
 {{- $rows := slice -}}
 {{- range split .Inner "\n" -}}
   {{- $line := trim . " \t\r" -}}
-  {{- if and (ne $line "") (in $line "=") -}}
-    {{- $kv := split $line "=" -}}
-    {{- $k := trim (index $kv 0) " " -}}
-    {{- $v := trim (delimit (after 1 $kv) "=") " " -}}
-    {{- if ne $k "" -}}
-      {{- $rows = $rows | append (dict "k" $k "v" $v) -}}
+  {{- if ne $line "" -}}
+    {{- if in $line "=" -}}
+      {{- /* 「項目名 = 値」の行。新しい行を作る */ -}}
+      {{- $kv := split $line "=" -}}
+      {{- $k := trim (index $kv 0) " " -}}
+      {{- $v := trim (delimit (after 1 $kv) "=") " " -}}
+      {{- if ne $k "" -}}
+        {{- $rows = $rows | append (dict "k" $k "v" $v) -}}
+      {{- end -}}
+    {{- else if gt (len $rows) 0 -}}
+      {{- /* = が無い行。直前の項目の値に改行して繋げる */ -}}
+      {{- $last := index $rows (sub (len $rows) 1) -}}
+      {{- $merged := dict "k" $last.k "v" (printf "%s<br>%s" $last.v $line) -}}
+      {{- $rows = append $merged (first (sub (len $rows) 1) $rows) -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}

@@ -274,7 +274,7 @@ a.external::after { content: "\2197"; font-size: .85em; margin-left: .1em; opaci
   max-width: 100%;
   background: var(--box);
   border: 1px solid var(--border);
-  margin: 0 0 1em 1.4em;
+  margin: 0 0 1em 26px;   /* ★左の数字が本文との距離。近いと感じたら増やす */
   padding: .4em;
   font-size: 13px;
   line-height: 1.5;
@@ -305,7 +305,7 @@ a.external::after { content: "\2197"; font-size: .85em; margin-left: .1em; opaci
   border: 1px solid var(--border);
   background: var(--box);
   padding: 3px;
-  margin: .5em 0 1em 1.4em;
+  margin: .5em 0 1em 26px;  /* ★左の数字が本文との距離 */
   font-size: 13px;
   max-width: 100%;
 }
