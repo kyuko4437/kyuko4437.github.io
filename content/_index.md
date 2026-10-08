@@ -53,9 +53,6 @@ date: 2026-10-06
 
 主な登場人格は飛行士、通信士、整備士。
 
-{{< quote 発言者="Steamストアページより引用" >}}
-まっすぐにしか進めない探査機は、その身尽きるまで宇宙を漂う――――
-{{< /quote >}}
 
 #### ゲームシステム
 
@@ -88,9 +85,9 @@ date: 2026-10-06
 ジャンル = タワーディフェンス
 開発元 = [魔女の脳](/majobrain/)
 パブリッシング = [Switch]わくわくゲームズ
-発売日 = [[PC]2025年8月6日](https://store.steampowered.com/app/3171480/HauntedManager)
-        [[Switch]2026年2月26日](https://store-jp.nintendo.com/item/software/D70010000109383)
-対応機種 = Windows（Steam）<br>Nintendo Switch
+発売日 = [PC]2025年8月6日
+        [Switch]2026年2月26日
+対応機種 = [Windows（Steam）](https://store.steampowered.com/app/3171480/HauntedManager)<br>[Nintendo Switch](https://store-jp.nintendo.com/item/software/D70010000109383)
 価格 = ¥840
 {{< /infobox >}}
 
