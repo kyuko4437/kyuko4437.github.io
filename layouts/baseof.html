@@ -15,10 +15,12 @@
     <h1>{{ block "pagetitle" . }}{{ partial "fulltitle.html" . }}{{ end }}</h1>
     {{- with .Params.subtitle }}<div class="subtitle">{{ . }}</div>{{ end }}
 
-    {{/* 表題の下の帯。左にタブ、右にカウンター */}}
+    {{/* 表題の下の帯。左にタブ、右にカウンター。
+         カウンターはトップページにだけ出す（全ページに閲覧回数は要らないため）。
+         帯そのものは表題の下線を兼ねているので、全ページで出す。 */}}
     <div class="topbar">
       {{ partial "tabs.html" . }}
-      {{ partial "counter.html" . }}
+      {{ if .IsHome }}{{ partial "counter.html" . }}{{ end }}
     </div>
 
     <main class="content">
