@@ -39,7 +39,7 @@ date: 2026-10-06
 
 ### タンサキ 片道の宇宙探索 {#tansaki}
 
-{{< infobox 題名="タンサキ 片道の宇宙探索" 画像="/img/tansaki.jpg" キャプション="キービジュアル" >}}
+{{< infobox 題名="タンサキ 片道の宇宙探索" 画像="/img/tansaki.jpg" キャプション="当該作品のキービジュアル" >}}
 ジャンル = 2D探索アドベンチャー
 開発元 = [魔女の脳](/majobrain/)
 発売日 = 2021年10月26日
@@ -52,6 +52,10 @@ date: 2026-10-06
 物語の舞台は探求心がエネルギーになる惑星。プレイヤーは惑星出身の飛行士らであり、より多くの探求心を発見し文明を再建するため、片道の探査機に搭乗し未知の宇宙を探索する。
 
 主な登場人格は飛行士、通信士、整備士。
+
+{{< quote 発言者="Steamストアページより引用" >}}
+まっすぐにしか進めない探査機は、その身尽きるまで宇宙を漂う――――
+{{< /quote >}}
 
 #### ゲームシステム
 
@@ -90,7 +94,7 @@ date: 2026-10-06
 価格 = ¥840
 {{< /infobox >}}
 
-**HauntedManager**は、[魔女の脳](/majobrain/)が開発し、Steam および Nintendo Switch 向けに配信されたゲーム。
+**HauntedManager**（ほーんてっどまねーじゃー）は、[魔女の脳](/majobrain/)が開発し、Steam および Nintendo Switch 向けに配信されたゲーム。Nintendo Switch 向けパブリッシングはわくわくゲームズ。
 主な登場人格は支配人、当主、ドッペルゲンガー、ブラクラ、八尺。
 
 {{< quote 発言者="Steamストアページより引用" >}}
@@ -106,9 +110,9 @@ date: 2026-10-06
 
 ## 外部リンク
 
-- 要記入
-
-<!-- メモ: X などのリンクを張る。外部リンクは自動で矢印アイコンが付く -->
+- [魔女の脳 (@kyuko4437)](https://x.com/kyuko4437) - X（旧Twitter）
+- [魔女の脳 (@kyuko4437.bsky.social)](https://bsky.app/profile/kyuko4437.bsky.social) - Bluesky
+- [魔女の脳の作品一覧](https://store.steampowered.com/search/?developer=%E9%AD%94%E5%A5%B3%E3%81%AE%E8%84%B3) - Steam
 
 ## 関連項目
 
