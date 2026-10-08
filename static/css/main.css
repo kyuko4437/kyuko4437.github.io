@@ -227,6 +227,15 @@ body {
   color: var(--text-weak);
 }
 
+/* --- infobox の横に並ぶ箱の幅 --- */
+/* float した infobox や thumb の隣に枠付きの箱が来ると、CSSの仕様で
+   箱の「枠と背景」だけが infobox の下に潜り込み、本文より広く見えてしまう。
+   （中の文字だけは正しく折り返すので、枠だけがはみ出て見える）
+   display: flow-root を付けると、箱が infobox を避けて本文と同じ幅で止まる。 */
+.quotebox,
+.panel { display: flow-root; }
+
+
 /* --- 見出し --- */
 h1, h2 {
   font-family: var(--font-head);
